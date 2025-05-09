@@ -1,0 +1,1 @@
+export const suggestion=["phone","ac","samsung","apple","blanket"];

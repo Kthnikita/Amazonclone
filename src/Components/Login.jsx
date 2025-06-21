@@ -2,8 +2,10 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Appcontext } from '../App';
+import { setuser } from './Createslice';
+import { useDispatch } from 'react-redux';
 function Login() {
-  const {setuser}=useContext(Appcontext);
+  const dispatch=useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ function Login() {
   e.preventDefault();
   const savedUser = JSON.parse(localStorage.getItem('user'));
   if (savedUser && savedUser.email === email && savedUser.password === password) {
-    setuser(savedUser);
+    dispatch(setuser(savedUser));
     navigate('/');       
   } else {
     alert("Invalid credentials");

@@ -2,18 +2,19 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Appcontext } from '../App';
+import { setuser } from './Createslice';
+import { useDispatch } from 'react-redux';
 const Signup = () => {
-    const{setuser}=useContext(Appcontext);
+    const dispatch=useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSignup = () => {
-    console.log("Signing up with:", { name, email, password });
     localStorage.setItem("user",JSON.stringify({name,email,password}));
-    setuser({name,email,password})
-    navigate('/');
+    dispatch(setuser({name,email,password}));
+    navigate('/login');
   };
 
   return (
